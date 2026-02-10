@@ -69,7 +69,7 @@ export abstract class Produto{
 		this._classificacao = value;
 	}
 
-    
+
     //Método Visualizar
 
     public visualizar(): void{
@@ -90,11 +90,11 @@ export abstract class Produto{
 
         }
         console.log("\n====================================")
-        console.log("||          DADOS DA CONTA         ||")
-        console.log("====================================")
-        console.log(`Numero do Produto: ${this._produtoId}`);
-        console.log(`Nome do Produto: ${this._nomeProduto}`);
-        console.log(`Preço do Produto: R$ ${this._preco}`);
+        console.log("||          DADOS DOS PRODUTOS      ||")
+        console.log("======================================")
+        console.log(`Numero do Produto: ${this._produtoId} `);
+        console.log(`Nome do Produto: ${this._nomeProduto} `);
+        console.log(`Preço do Produto: R$ ${this._preco}   `);
         console.log(`Preço do Produto: R$ ${this._classificacao}`);
     
 

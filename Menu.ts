@@ -4,10 +4,13 @@ import { JogoDigital } from "./src/model/JogoDigital"
 import { Input } from "./src/util/Input";
 import { Colors } from "./src/util/Colors";
 import { formatarMoeda } from "./src/util/Currency";
+import { ProdutoController } from "./src/controller/ProdutoController";
 
 
 
-//Testes JOGO FISICO
+/* TESTES INICIAIS COMENTADOS
+
+Testes JOGO FISICO
 const jF1 = new JogoFisico(1, 'God of War', 1, 299.00, 18, 'PS5');
 
 console.log(`A plataforma é : ${jF1.plataforma}`);
@@ -19,6 +22,16 @@ const jD1 = new JogoDigital(1, 'GTA 6', 2, 500.00, 18, 6);
 
 console.log(`O tamanho é : ${jD1.tamanhoGB}`);
 console.log(`O preço é : ${formatarMoeda(jD1.preco)}`);
+*/
+
+
+
+//criar objeto global da classe Produto controller
+const produtos = new ProdutoController();
+
+//criar Array contendo os tipos de produtos
+const tiposProdutos = ['Jogo Fisico', `Jogo Digital`];
+
 
 export function main(){
 
@@ -47,48 +60,41 @@ Colors.reset);
     switch(opcao){
 
         case 1:
-            console.clear();
-            console.log("=======================================")
-            console.log("||          Criar Produto            ||")
-            console.log("=======================================")
-        
+          console.log(Colors.fg.whitestrong, "\n\nCriar Produto\n\n", Colors.reset);
+             
+            criarProduto()
             keyPress();
         break;
 
         case 2:
-            console.clear();
-            console.log("=======================================")
-            console.log("||       Listar todos os Produtos      ||")
-            console.log("=======================================")
-           
+            console.log(Colors.fg.whitestrong, "\n\nListar todas os Produto\n\n", Colors.reset);
+                
+            
+            listarTodasContas()
             keyPress();
 
         break;
 
         case 3:
-            console.clear();
-            console.log("=======================================")
-            console.log("||           Buscar Produto        ||")
-            console.log("=======================================")
+           console.log(Colors.fg.whitestrong, "\n\nConsultar dados do Produto - por número\n\n", Colors.reset);
             
+            buscarProduto()
             keyPress();
 
         break;
         case 4:
-            console.clear();
-            console.log("=======================================")
-            console.log("||         Atualizar Produto        ||")
-            console.log("=======================================")
+            console.log(Colors.fg.whitestrong, "\n\nAtualizar dados do Produto\n\n", Colors.reset);
             
+            atualizarProduto();
+            keyPress();
          
 
         break;
         case 5:
-            console.clear();
-            console.log("=======================================")
-            console.log("||          Apagar Produto          ||")
-            console.log("=======================================")
+            console.log(Colors.fg.whitestrong, "\n\nApagar um Produto\n\n", Colors.reset);
             
+            deletarProduto();
+            keyPress();
 
 
         break;
@@ -103,6 +109,140 @@ Colors.reset);
     }
   
 }
+
+
+    //Opção 1: Criar um novo produto
+        function criarProduto(){
+            //Nome PRODUTO
+            console.log("Digite o Nome do Produto")
+            const nomeProduto = Input.question("")
+            
+            //Preço do Produto
+            console.log("Digite o Preço do Produto")
+            const precoProduto = Input.questionFloat("")
+
+
+            //Tipo de Produto
+            console.log("Digite o Tipo de Produto:")
+            const tipo = Input.keyInSelect(tiposProdutos, "", {cancel: false}) + 1;
+
+            //Classificação
+            console.log("Digite o Tipo de classificação:")
+            const classificacaoProduto = Input.questionInt("")
+
+
+
+
+            //Escolha de tipo de Produtos
+
+            switch (tipo){
+
+                case 1:  
+                    console.log('Digite a plataforma: ')
+                    const plataforma = Input.question('');
+                produtos.cadastrar(new JogoFisico(produtos.gerarId(), nomeProduto, tipo, precoProduto, classificacaoProduto, plataforma ))    
+                break;
+
+                case 2:
+                    console.log('Digite o tamanho do Jogo: ')
+                    const tamanhoGB = Input.questionFloat('');
+                produtos.cadastrar(new JogoDigital(produtos.gerarId(), nomeProduto, tipo, precoProduto, classificacaoProduto, tamanhoGB))
+                break;
+            }
+        }
+
+
+           // Opção 2: Lista todas as contas cadastradas
+ 
+            function listarTodasContas(): void{
+                 produtos.listarTodas();
+            }
+
+
+
+
+            //Opção 3: Buscar Produtos
+            function buscarProduto(): void{
+            console.log("Digite o Numero do Produto:")
+            const numero = Input.questionInt("")
+                produtos.procurarPorId(numero);
+
+            }
+
+
+
+
+            //Opção 4: ATUALIZAR PRODUTO
+            function atualizarProduto(): void{
+
+            console.log("Digite o Numero do Produto:")
+            const numero= Input.questionInt("");
+
+            const produto = produtos.buscarNoArray(numero);
+
+            if(produto !== null){
+
+
+            let nomeProduto = produto.nomeProduto;
+            let precoProduto = produto.preco;
+            const tipo = produto.tipo;
+            const classificacaoProduto = produto.classificacao;
+
+            
+
+            console.log(`Nome do produto atual: ${nomeProduto}`)
+            console.log("Digite o novo nome do Produto: \n (Pressione Enter para manter o valor atual");
+            let entrada = Input.question("");
+            
+            nomeProduto=entrada.trim()===""? nomeProduto:entrada;
+
+
+            console.log(`Preço do produto atual: ${precoProduto}`)
+            console.log("Digite o novo preço do Produto: \n (Pressione Enter para manter o valor atual");
+            entrada = Input.question("");
+            precoProduto = entrada.trim()===""? precoProduto:parseFloat(entrada.replace(",","."))
+
+            
+            console.log("Tipo do produto atual:", tipo)
+            console.log("Digite o Tipo de Produto:")
+            const tipo1 = Input.keyInSelect(tiposProdutos, "", {cancel: false}) + 1;
+
+
+            // Laço SWITCH ATUALIZAR PRODUTO
+            switch(tipo1){
+                    case 1:  
+                    console.log('Digite a plataforma: ')
+                    const plataforma = Input.question('');
+                produtos.atualizar(new JogoFisico(numero, nomeProduto, tipo, precoProduto, classificacaoProduto, plataforma )) 
+               
+                break;
+
+                case 2:
+                    console.log('Digite o tamanho do Jogo: ')
+                    const tamanhoGB = Input.questionFloat('');
+                produtos.atualizar(new JogoDigital(numero, nomeProduto, tipo, precoProduto, classificacaoProduto, tamanhoGB))
+               
+                break;
+            }
+            }
+
+            }
+
+
+            
+           //OPÇÃO 5: APAGAR PRODUTO
+
+           function deletarProduto():void{
+            console.log("Digite o ID do Produto")
+            const numero = Input.questionInt("")
+            let validacao = Input.question(`Deseja realmente apagar a conta ${numero}? (S) Sim (N) Não `).toUpperCase();
+        
+           if(validacao === "S")
+           produtos.deletar(numero);
+
+           else return;
+        
+           }
 
 
     function sobre(): void {
