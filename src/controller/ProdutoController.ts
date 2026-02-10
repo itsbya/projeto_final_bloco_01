@@ -66,6 +66,7 @@ export class ProdutoController implements ProdutoRepository {
         
         if(validacao === "S"){
             this.listarProdutos.splice(this.listarProdutos.indexOf(buscarProduto), 1)
+            console.log(`${Colors.fg.green} \n O Produto ${buscarProduto.nomeProduto} foi apagado1 com Sucesso ${Colors.fg.green}` );
         }   
         
         else if(validacao === "N"){
@@ -82,15 +83,11 @@ export class ProdutoController implements ProdutoRepository {
 
 
     
-    public buscarNoArray(numero:number): Produto | null{
-        this.listarProdutos.forEach( produto => {
-            if(produto.produtoId === numero){
-                return produto;
-            }
-        }) 
-
-         return null;
-        }
+public buscarNoArray(numero: number): Produto | null {
+  return this.listarProdutos.find(
+    produto => produto.produtoId === numero
+  ) || null;
+}
     
 }
 
