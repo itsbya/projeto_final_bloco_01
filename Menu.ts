@@ -113,13 +113,14 @@ Colors.reset);
 
     //Opção 1: Criar um novo produto
         function criarProduto(){
+
             //Nome PRODUTO
             console.log("Digite o Nome do Produto")
             const nomeProduto = Input.question("")
             
             //Preço do Produto
             console.log("Digite o Preço do Produto")
-            const precoProduto = Input.questionFloat("")
+            const precoProduto = Input.questionFloat("");
 
 
             //Tipo de Produto
@@ -194,13 +195,13 @@ Colors.reset);
             console.log("Digite o novo nome do Produto: \n (Pressione Enter para manter o valor atual");
             let entrada = Input.question("");
             
-            nomeProduto=entrada.trim()===""? nomeProduto:entrada;
+            nomeProduto=entrada.trim() === "" ? nomeProduto:entrada;
 
 
-            console.log(`Preço do produto atual: ${precoProduto}`)
+            console.log(`Preço do produto atual: ${formatarMoeda(precoProduto)}`)
             console.log("Digite o novo preço do Produto: \n (Pressione Enter para manter o valor atual");
             entrada = Input.question("");
-            precoProduto = entrada.trim()===""? precoProduto:parseFloat(entrada.replace(",","."))
+            precoProduto = entrada.trim() === "" ? precoProduto:parseFloat(entrada.replace(",","."))
 
             
             console.log("Tipo do produto atual:", tipo)
