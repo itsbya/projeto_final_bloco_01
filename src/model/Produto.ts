@@ -99,5 +99,11 @@ export abstract class Produto{
     
 
     }
+    
+
+    public aplicarDesconto(percentual: number): void {
+  this.preco -= this.preco * (percentual / 100);
+}
+
 
 }

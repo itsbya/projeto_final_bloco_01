@@ -46,6 +46,7 @@ console.log("||         |2| Listar todos os Produtos           ||");
 console.log("||         |3| Buscar produto por ID              ||");
 console.log("||         |4| Atualizar Produto                  ||");
 console.log("||         |5| Apagar Produto                     ||");
+console.log("||         |6| Aplicar desconto                   ||");
 console.log("||         |0| Sair                               ||");
 console.log("====================================================");
 console.log("                                                  ",
@@ -99,6 +100,16 @@ Colors.reset);
 
         break;
 
+        case 6:
+            console.log(Colors.fg.whitestrong, "\n\nApagar um Produto\n\n", Colors.reset);
+            
+            aplicarDesconto();
+            keyPress();
+
+
+        break;
+
+
         case 0:
         sobre();
         process.exit(0);
@@ -129,7 +140,7 @@ Colors.reset);
 
             //Classificação
             console.log("Digite o Tipo de classificação:")
-            const classificacaoProduto = Input.questionInt("")
+            const classificacaoProduto = Input.questionInt("");
 
 
 
@@ -244,6 +255,39 @@ Colors.reset);
            else return;
         
            }
+
+
+           //Opção 6: Criar um novo produto
+        function aplicarDesconto(){
+
+            console.log("Digite o ID do Produto");
+            const idProduto: number = Input.questionInt('');
+
+            let produto = produtos.buscarNoArray(idProduto)
+
+            if(produto === null ) {
+                console.log(`${Colors.fg.red} \n O Produto não foi encontrado! ${Colors.reset}`);
+                return;
+            }
+
+             console.log("Digite o percentual de Desconto");
+            const percentualDesconto: number = Input.questionFloat('');
+
+             if (percentualDesconto <= 0 || percentualDesconto > 50) {
+                 console.log(`${Colors.fg.red} \n Desconto inválido. Permitido apenas entre 1% e 50%. ${Colors.reset}`);
+                return;
+             }
+
+             produto.aplicarDesconto(percentualDesconto);
+             
+            console.log(`${Colors.fg.green} \n Desconto aplicado com sucesso! ${Colors.fg.green}` );
+            console.log(`Novo preço: ${formatarMoeda(produto.preco)}`);
+  }
+
+ 
+
+
+
 
 
     function sobre(): void {

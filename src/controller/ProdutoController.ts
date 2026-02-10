@@ -51,7 +51,7 @@ export class ProdutoController implements ProdutoRepository {
             console.log(`${Colors.fg.green} \n O Produto ${produto.produtoId} foi Atualizado com Sucesso ${Colors.fg.green}` );
         }   
         else {
-            console.log(`${Colors.fg.green} \n O Produto não foi encontrado! ${Colors.fg.green}`)
+            console.log(`${Colors.fg.red} \n O Produto não foi encontrado! ${Colors.reset}`)
     }
 }
 
@@ -73,7 +73,7 @@ export class ProdutoController implements ProdutoRepository {
         }
       }
     }
-    
+
 
 
      public gerarId(): number{
