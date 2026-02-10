@@ -3,6 +3,7 @@ import { JogoFisico } from "./src/model/JogoFisico"
 import { JogoDigital } from "./src/model/JogoDigital"
 import { Input } from "./src/util/Input";
 import { Colors } from "./src/util/Colors";
+import { formatarMoeda } from "./src/util/Currency";
 
 
 
@@ -10,14 +11,14 @@ import { Colors } from "./src/util/Colors";
 const jF1 = new JogoFisico(1, 'God of War', 1, 299.00, 18, 'PS5');
 
 console.log(`A plataforma é : ${jF1.plataforma}`);
-console.log(`O preço é : ${jF1.preco}`);
+console.log(`O preço é : ${formatarMoeda(jF1.preco)}`);
 
 
 //Testes JOGO DIGITAL
 const jD1 = new JogoDigital(1, 'GTA 6', 2, 500.00, 18, 6);
 
 console.log(`O tamanho é : ${jD1.tamanhoGB}`);
-console.log(`O preço é : ${jD1.preco}`);
+console.log(`O preço é : ${formatarMoeda(jD1.preco)}`);
 
 export function main(){
 
