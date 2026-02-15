@@ -5,6 +5,7 @@ import { Input } from "./src/util/Input";
 import { Colors } from "./src/util/Colors";
 import { formatarMoeda } from "./src/util/Currency";
 import { ProdutoController } from "./src/controller/ProdutoController";
+import { Cliente } from "./src/model/Cliente";
 
 
 
@@ -24,6 +25,17 @@ console.log(`O tamanho é : ${jD1.tamanhoGB}`);
 console.log(`O preço é : ${formatarMoeda(jD1.preco)}`);
 */
 
+
+
+//Testes clientes
+const cliente1 = new Cliente(1, 'Bia', 26);
+const cliente2 = new Cliente(2, 'Lucas', 10);
+const cliente3 = new Cliente(3, 'Thayssa', 21);
+
+
+cliente1.visualizar();
+cliente2.visualizar();
+cliente3.visualizar();
 
 
 //criar objeto global da classe Produto controller
@@ -137,6 +149,12 @@ Colors.reset);
             //Tipo de Produto
             console.log("Digite o Tipo de Produto:")
             const tipo = Input.keyInSelect(tiposProdutos, "", {cancel: false}) + 1;
+            
+            
+            // Idade cliente
+            console.log("Digite a sua idade:")
+            const idadeCliente = Input.questionInt("");
+
 
             //Classificação
             console.log("Digite o Tipo de classificação:")
@@ -148,13 +166,15 @@ Colors.reset);
             //Escolha de tipo de Produtos
 
             switch (tipo){
-
+               
+                //Jogo Físico
                 case 1:  
                     console.log('Digite a plataforma: ')
                     const plataforma = Input.question('');
                 produtos.cadastrar(new JogoFisico(produtos.gerarId(), nomeProduto, tipo, precoProduto, classificacaoProduto, plataforma ))    
                 break;
-
+                
+                //Jogo Digital
                 case 2:
                     console.log('Digite o tamanho do Jogo: ')
                     const tamanhoGB = Input.questionFloat('');

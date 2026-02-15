@@ -7,6 +7,7 @@ export abstract class Produto{
     private _tipo: number;
     private _preco: number;
     private _classificacao: number;
+	
 
 
 	constructor(produtoId: number, nomeProduto: string, tipo: number, preco: number, classificacao: number) {
@@ -37,6 +38,7 @@ export abstract class Produto{
 	public get preco(): number {
 		return this._preco;
 	}
+
 
 
     public get classificacao(): number {
@@ -100,6 +102,9 @@ export abstract class Produto{
 
     }
     
+
+
+	//Metodos auxiliares
 
     public aplicarDesconto(percentual: number): void {
   this.preco -= this.preco * (percentual / 100);
