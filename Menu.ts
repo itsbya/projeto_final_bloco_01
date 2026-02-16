@@ -4,7 +4,7 @@ import { JogoDigital } from "./src/model/JogoDigital"
 import { Input } from "./src/util/Input";
 import { Colors } from "./src/util/Colors";
 import { formatarMoeda } from "./src/util/Currency";
-import { ProdutoController } from "./src/controller/ProdutoController";
+import { ProdutoController } from "./src/repository/ProdutoRepositoryImpl";
 import { Cliente } from "./src/model/Cliente";
 
 

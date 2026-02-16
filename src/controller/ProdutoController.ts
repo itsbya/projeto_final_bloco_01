@@ -62,11 +62,11 @@ export class ProdutoController implements ProdutoRepository {
         let validacao: string;
 
         if(buscarProduto!== null){
-        validacao= Input.question(`Deseja realmente apagar a conta ${numero}? (S) Sim (N) Não `).toUpperCase();
+        validacao = Input.question(`Deseja realmente apagar o produto ${numero}? (S) Sim (N) Não `).toUpperCase();
         
         if(validacao === "S"){
             this.listarProdutos.splice(this.listarProdutos.indexOf(buscarProduto), 1)
-            console.log(`${Colors.fg.green} \n O Produto ${buscarProduto.nomeProduto} foi apagado1 com Sucesso ${Colors.fg.green}` );
+            console.log(`${Colors.fg.green} \n O Produto ${buscarProduto.nomeProduto} foi apagado com Sucesso! ${Colors.reset}` );
         }   
         
         else if(validacao === "N"){
@@ -77,6 +77,7 @@ export class ProdutoController implements ProdutoRepository {
 
 
 
+    //Métodos auxiliares
      public gerarId(): number{
         return ++ this.numero;
     }
