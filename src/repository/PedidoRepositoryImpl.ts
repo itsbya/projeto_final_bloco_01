@@ -20,7 +20,7 @@ export class PedidoController implements PedidoRepository{
 
 
     buscarPorPedidoId(numero: number): Pedido | undefined {
-        return this.listaPedidos.find(pedido => pedido.numero === numero);
+        return this.listaPedidos.find(pedido => pedido.id === numero);
     }
 
 
@@ -32,8 +32,8 @@ export class PedidoController implements PedidoRepository{
 
 
     atualizarPedido(pedido: Pedido): Pedido {
-       const index = this.listaPedidos.findIndex(pedido => pedido.numero === pedido.numero);
-        if(index >= 0) {
+       const index = this.listaPedidos.findIndex(p => p.id === pedido.id);
+        if(index !== -1) {
             this.listaPedidos[index] = pedido;
         }
         return pedido;

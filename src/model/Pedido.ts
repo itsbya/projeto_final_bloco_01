@@ -5,7 +5,7 @@ export class Pedido {
     private _quantidade: number;
     private _total: number;
     private _data: Date;
-    numero: number;
+    
 
 
 

@@ -27,7 +27,7 @@ console.log(`O preço é : ${formatarMoeda(jD1.preco)}`);
 
 
 
-//Testes clientes
+/*Testes clientes iniciai
 const cliente1 = new Cliente(1, 'Bia', 26);
 const cliente2 = new Cliente(2, 'Lucas', 10);
 const cliente3 = new Cliente(3, 'Thayssa', 21);
@@ -36,6 +36,8 @@ const cliente3 = new Cliente(3, 'Thayssa', 21);
 cliente1.visualizar();
 cliente2.visualizar();
 cliente3.visualizar();
+*/
+
 
 
 //criar objeto global da classe Produto controller
